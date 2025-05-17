@@ -54,6 +54,8 @@ Users can upload **PDFs, images, or audio**, and choose from:
 
 ### 🔧 Backend Stack
 - **Python**
+- **Flask**
+  - Lightweight Python web framework used to handle routing, templating, and RESTful API services
 - **Azure Services**:
   - Azure Speech Service (STT + TTS) – Free Tier
   - Azure Computer Vision OCR – Free Tier
