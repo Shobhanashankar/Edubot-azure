@@ -1,0 +1,15 @@
+transformers
+language-tool-python
+azure-storage-blob
+azure-cosmos
+azure-cognitiveservices-speech
+torch
+scikit-learn
+spacy
+rake-nltk
+sentence-transformers
+nltk
+python-dotenv
+requests
+PyMuPDF
+python-pptx
