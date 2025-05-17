@@ -148,7 +148,7 @@ Extend input types beyond PDF/Image/PPTX:
 | ----------------- | --------------- |
 | **Shobhana S**    | @Shobhanashankar|
 | **Gautham R**     | @gautham-here   |
-| **Sri Ranjana C** | @ @sriranjanac  |
+| **Sri Ranjana C** | @sriranjanac    |
 
 
 
