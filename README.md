@@ -112,12 +112,36 @@ All outputs including:
 > A student uploads a PDF chapter and selects “Summary Creator” → EduBotAI+ extracts and cleans the text, summarizes it, and generates flashcards. They can also listen to the summary in Hindi or generate a video with Tamil subtitles for revision.
 
 ---
+## 🚀 Future Enhancements (Student-Focused)
 
+🔎 1. Semantic Search on Summarized/Corrected Content
+Enable *intelligent search* using vector embeddings (e.g., `SentenceTransformers`):
+- 🔍 Search similar summaries based on meaning, not just keywords
+- ❓ Ask questions across multiple documents
+- 🧠 Smart retrieval: “Find notes where cybersecurity attacks were mentioned”
+
+🧠 2. LLM-Powered Summary QA (Question-Answering)
+Integrate with LLMs like OpenAI GPT or Anthropic Claude for enhanced interaction:
+- 📝 "Summarize this. Now give 3 bullet points and a call to action."
+- ❓ Ask clarifying questions on the summary
+- ✅ Improve summary coherence and factual accuracy
+
+🧪 3. Multimodal Input Handling
+Extend input types beyond PDF/Image/PPTX:
+- 🎧 **Audio Support (MP3, WAV):**
+  - Transcribe using Whisper / Google STT
+  - Clean and summarize the transcript
+- 📹 **YouTube or Video Link Support:**
+  - Frame-by-frame OCR for visual content
+  - Summarize lecture visuals/texts
+
+---
 ## ⚙️ Installation
 - Clone the repository
 - Install the virtual environment and dependencies
 - Train the model and run the flask Application
 
+---
 ## 👥 Collaborators
 
 | Name              | GitHub Username |
