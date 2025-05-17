@@ -1,0 +1,13 @@
+azure-functions
+transformers
+language-tool-python
+azure-storage-blob
+azure-cosmos
+torch
+language-tool-python
+scikit-learn
+spacy
+rake-nltk
+sentence_transformers
+nltk
+python-dotenv
