@@ -146,9 +146,9 @@ Extend input types beyond PDF/Image/PPTX:
 
 | Name              | GitHub Username |
 | ----------------- | --------------- |
-| **Shobhana S**    | @Shobhanashankar|
-| **Gautham R**     | @gautham-here   |
-| **Sri Ranjana C** | @sriranjanac    |
+| **Shobhana S**    | [@Shobhanashankar](https://github.com/Shobhanashankar) |
+| **Gautham R**     | [@gautham-here](https://github.com/gautham-here)  |
+| **Sri Ranjana C** | [@sriranjanac](https://github.com/sriranjanac)  |
 
 
 
