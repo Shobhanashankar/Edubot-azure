@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR & Summarizer | EduBot+</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e3f0ff 0%, #f5f7fa 100%);
+            color: #002244;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            background: #002244;
+            color: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            margin-right: auto;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 32px auto 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px 32px 32px 32px;
+        }
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #002244;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: #64748b;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+        .form-group {
+            margin-bottom: 32px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .file-upload {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+            background: #f8fafc;
+        }
+        .file-upload:hover, .file-upload:focus-within {
+            border-color: #1e40af;
+        }
+        .file-upload-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 10px 16px;
+            font-weight: 600;
+            color: #002244;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 1rem;
+        }
+        .file-name {
+            padding: 0 16px;
+            color: #64748b;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .file-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+        .btn {
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            background: #0057ff;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            background: #004cd7;
+        }
+        #ocr-status {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        #ocr-status.generating {
+            color: #1e40af;
+            background: #e3f0ff;
+            border-radius: 6px;
+            padding: 12px 0;
+            animation: pulse 1.2s infinite;
+        }
+        #ocr-status.success {
+            color: #059669;
+            background: #e0f7ef;
+            border-radius: 6px;
+            padding: 12px 0;
+        }
+        #ocr-status.error {
+            color: #ef4444;
+            background: #ffeaea;
+            border-radius: 6px;
+            padding: 12px 0;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30,64,175,0.15);}
+            70% { box-shadow: 0 0 0 10px rgba(30,64,175,0);}
+            100% { box-shadow: 0 0 0 0 rgba(30,64,175,0);}
+        }
+        .results-section {
+            margin-top: 40px;
+        }
+        .results-section h3 {
+            color: #0057ff;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .results-section pre {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 22px 18px;
+            font-size: 1.13rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-bottom: 32px;
+            line-height: 2.1;
+            letter-spacing: 0.2px;
+        }
+        .back-btn {
+            background: #e2e8f0;
+            color: #002244;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 12px 32px;
+            margin: 40px auto 0 auto;
+            display: block;
+            border: none;
+            transition: background 0.2s;
+            width: fit-content;
+            font-size: 1.1rem;
+        }
+        .back-btn:hover {
+            background: #d1d5db;
+            color: #0057ff;
+        }
+        .footer {
+            background: #002244;
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        .footer-heart {
+            color: #ef4444;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 14px;
+            }
+            .results-section pre {
+                font-size: 1rem;
+                padding: 14px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container" style="background: none; box-shadow: none; padding: 0;">
+            <a class="navbar-brand" href="/"></a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="title">📝 OCR & Summarizer</h1>
+        <p class="subtitle">Upload a PDF, Image, or PPTX file to extract text and generate a summary using Azure AI.<br>
+        Supports English language. For best results, upload clear files.</p>
+        <form id="ocr-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="ocr-file" class="form-label">Select File (PDF, Image, PPTX)</label>
+                <div class="file-upload">
+                    <input type="file" id="ocr-file" name="file" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.pptx" required>
+                    <label for="ocr-file" class="file-upload-btn">Choose file</label>
+                    <span class="file-name">No file selected</span>
+                </div>
+            </div>
+            <button type="submit" class="btn">Process File</button>
+        </form>
+        <div id="ocr-status"></div>
+        <div class="results-section" id="results-section" style="display:none;">
+            <h3>Extracted Text</h3>
+            <pre id="raw-text"></pre>
+            <h3>Cleaned Text</h3>
+            <pre id="cleaned-text"></pre>
+            <h3>Corrected Text</h3>
+            <pre id="corrected-text"></pre>
+            <h3>Summary</h3>
+            <pre id="summary-text"></pre>
+        </div>
+        <button class="back-btn" onclick="window.location.href='/'">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </button>
+    </div>
+    <footer class="footer">
+        <small>
+            &copy; 2025 EduBot+. Made with <span class="footer-heart">&hearts;</span> by passionate students.
+        </small>
+    </footer>
+    <script>
+    // File input styling
+    const fileInput = document.getElementById('ocr-file');
+    const fileName = document.querySelector('.file-name');
+    fileInput.addEventListener('change', function() {
+        if(this.files.length > 0) {
+            fileName.textContent = this.files[0].name;
+        } else {
+            fileName.textContent = 'No file selected';
+        }
+    });
+
+    document.getElementById('ocr-form').onsubmit = async function(e) {
+        e.preventDefault();
+        const status = document.getElementById('ocr-status');
+        status.innerHTML = "Processing file...";
+        status.className = "generating";
+        document.getElementById('results-section').style.display = "none";
+        const fileInput = document.getElementById('ocr-file');
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        const res = await fetch('/ocr_summarize', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if(data.success) {
+            status.innerHTML = "File processed successfully!";
+            status.className = "success";
+            document.getElementById('results-section').style.display = "block";
+            document.getElementById('raw-text').textContent = data.raw_text || "";
+            document.getElementById('cleaned-text').textContent = data.cleaned_text || "";
+            document.getElementById('corrected-text').textContent = data.corrected_text || "";
+            document.getElementById('summary-text').textContent = data.summary || "";
+        } else {
+            status.innerHTML = (data.error || "Error processing file.");
+            status.className = "error";
+        }
+    };
+    </script>
+</body>
+</html>
