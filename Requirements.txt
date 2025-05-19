@@ -1,3 +1,4 @@
+flask
 transformers
 language-tool-python
 azure-storage-blob
