@@ -1,4 +1,5 @@
 # 📚 EduBotAI+ — Your AI-Powered Study Companion 🚀
+**Winner – 1st Place at the IITM Azure Learning Series Hackathon**
 
 EduBotAI+ is an AI-powered smart learning assistant that transforms how students engage with study material. It supports PDFs, images, handwritten notes, and slides—using Azure's services to extract content. Leveraging NLP techniques, it performs **text extraction**,**grammar correction**, **summarization**, **translation**, and **flashcard generation**. With added voice-based input/output, EduBotAI+ simplifies complex concepts into interactive, easy-to-understand formats—making learning faster and more personalized. l
 
